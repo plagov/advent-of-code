@@ -2,6 +2,7 @@ package io.plagov.advent
 
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
+import util.readInputFile
 import java.io.File
 
 class Day01Test : ShouldSpec({
@@ -20,7 +21,7 @@ class Day01Test : ShouldSpec({
     """.trimIndent()
     .split("\n")
 
-  val taskInput = File("src/test/resources/inputs/day01.txt").readLines()
+  val taskInput = readInputFile("day01.txt")
 
   val day1 = Day01()
 
