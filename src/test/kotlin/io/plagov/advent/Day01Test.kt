@@ -32,4 +32,12 @@ class Day01Test : ShouldSpec({
   should("find number of increases for task input") {
     day1.numbersOfIncreases(taskInput) shouldBe 1316
   }
+
+  should("find number of sum increases of three range windows for sample input") {
+    day1.numberOfSumIncreasesInThreeRangeWindow(sample) shouldBe 5
+  }
+
+  should("find number of sum increases of three range windows for task input") {
+    day1.numberOfSumIncreasesInThreeRangeWindow(taskInput) shouldBe 1344
+  }
 })
