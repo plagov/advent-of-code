@@ -4,17 +4,22 @@ class Day02 {
 
   fun multiplyHorizontalWithDepth(input: List<String>): Int {
     val regex = """(.*) (\d+)""".toRegex()
-    var horizontal = 0
-    var depth = 0
-    input.forEach { line ->
-      val (command, direction) = regex.find(line)?.destructured
-        ?: error("Failed to parse the line '$line' with given regex $regex")
-      when (command) {
-        "forward" -> horizontal += direction.toInt()
-        "down" -> depth += direction.toInt()
-        "up" -> depth -= direction.toInt()
-      }
+
+    val commands = input.map { command ->
+      val (direction, value ) = regex.find(command)?.destructured
+        ?: error("Failed to parse the line '$command' with given regex $regex")
+      Command(direction, value.toInt())
     }
-    return horizontal * depth
+
+    val horizontal = commands.filter { it.direction == "forward" }.sumOf { it.value }
+    val down = commands.filter { it.direction == "down" }.sumOf { it.value }
+    val up = commands.filter { it.direction == "up" }.sumOf { it.value }
+
+    return horizontal * (down - up)
   }
 }
+
+data class Command(
+  val direction: String,
+  val value: Int
+)
