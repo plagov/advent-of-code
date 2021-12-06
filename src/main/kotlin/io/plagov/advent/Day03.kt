@@ -14,7 +14,17 @@ class Day03 {
       verticalList.add(verList)
     }
 
-    return -1
+    val gammaRate = verticalList.joinToString("") { listWithBits ->
+      listWithBits.groupBy { it }.maxByOrNull { bitEntry -> bitEntry.value.size }?.key
+        ?: error("Something went wrong with list of bits: $listWithBits")
+    }.toInt(2)
+
+    val epsilonRate = verticalList.joinToString("") { listWithBits ->
+      listWithBits.groupBy { it }.minByOrNull { bitEntry -> bitEntry.value.size }?.key
+        ?: error("Something went wrong with list of bits: $listWithBits")
+    }.toInt(2)
+
+    return gammaRate * epsilonRate
   }
 
 }

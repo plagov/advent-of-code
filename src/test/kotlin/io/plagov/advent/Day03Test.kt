@@ -11,6 +11,6 @@ class Day03Test : ShouldSpec({
   val sampleInput = readInputFile("day03-sample.txt")
 
   should("find decimal number from binary gamma and epsilon rates for sample input") {
-    day3.productOfDecimalGammaAndEpsilonRates(sampleInput) shouldBe 10
+    day3.productOfDecimalGammaAndEpsilonRates(sampleInput) shouldBe 198
   }
 })
