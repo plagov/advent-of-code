@@ -5,7 +5,7 @@ class Day03 {
   fun productOfDecimalGammaAndEpsilonRates(input: List<String>): Int {
     val verticalList = convertToVerticalList(input)
     val gammaRate = mostCommonElement(verticalList).joinToString("").toInt(2)
-    val epsilonRate = lessCommonElement(verticalList).joinToString("").toInt(2)
+    val epsilonRate = leastCommonElement(verticalList).joinToString("").toInt(2)
     return gammaRate * epsilonRate
   }
 
@@ -28,7 +28,7 @@ class Day03 {
         ?: error("Something went wrong with list of bits: $listWithBits")
       }
 
-  private fun lessCommonElement(verticalList: MutableList<List<String>>) =
+  private fun leastCommonElement(verticalList: MutableList<List<String>>) =
     verticalList.map { listWithBits ->
       listWithBits.groupBy { it }.minByOrNull { bitEntry -> bitEntry.value.size }?.key
         ?: error("Something went wrong with list of bits: $listWithBits")
@@ -65,7 +65,7 @@ class Day03 {
       val lessCommon = if (co2List.size == 2 && lastIndicesAreEqual(co2List)) {
         "0"
       } else {
-        lessCommonElement(verticalList)[index]
+        leastCommonElement(verticalList)[index]
       }
       co2List = co2List.filter { it[index].toString() == lessCommon }.toMutableList()
     }
