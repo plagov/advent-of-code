@@ -22,4 +22,8 @@ class Day03Test : ShouldSpec({
   should("find decimal number from product of oxygen and CO2 ratings from sample input") {
     day3.productOfDecimalOxygenAndCO2ratings(sampleInput) shouldBe 230
   }
+
+  should("find decimal number from product of oxygen and CO2 ratings from task input") {
+    day3.productOfDecimalOxygenAndCO2ratings(taskInput) shouldBe 6940518
+  }
 })
