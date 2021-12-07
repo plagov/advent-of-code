@@ -42,7 +42,7 @@ class Day03 {
 
   private fun findOxygenRate(input: List<String>): MutableList<String> {
     val indices = input.first().indices
-    var oxygenList = input.toMutableList()
+    val oxygenList = input.toMutableList()
 
     for (index in indices) {
       val verticalList = convertToVerticalList(oxygenList)
@@ -51,14 +51,14 @@ class Day03 {
       } else {
         mostCommonElement(verticalList)[index]
       }
-      oxygenList = oxygenList.filter { it[index].toString() == mostCommon }.toMutableList()
+      oxygenList.removeIf { it[index].toString() != mostCommon }
     }
     return oxygenList
   }
 
   private fun findCO2Rate(input: List<String>): MutableList<String> {
     val indices = input.first().indices
-    var co2List = input.toMutableList()
+    val co2List = input.toMutableList()
 
     for (index in indices) {
       val verticalList = convertToVerticalList(co2List)
@@ -67,7 +67,7 @@ class Day03 {
       } else {
         leastCommonElement(verticalList)[index]
       }
-      co2List = co2List.filter { it[index].toString() == lessCommon }.toMutableList()
+      co2List.removeIf { it[index].toString() != lessCommon }
     }
 
     return co2List
