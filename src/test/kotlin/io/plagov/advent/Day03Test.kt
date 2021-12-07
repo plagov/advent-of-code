@@ -18,4 +18,8 @@ class Day03Test : ShouldSpec({
   should("find decimal number from product of binary gamma and epsilon rates for task input") {
     day3.productOfDecimalGammaAndEpsilonRates(taskInput) shouldBe 3009600
   }
+
+  should("find decimal number from product of oxygen and CO2 ratings from sample input") {
+    day3.productOfDecimalOxygenAndCO2ratings(sampleInput) shouldBe 230
+  }
 })
