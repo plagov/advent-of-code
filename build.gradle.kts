@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-  testImplementation("io.kotest:kotest-runner-junit5:5.0.1")
+  implementation("io.kotest:kotest-runner-junit5:5.0.1")
 }
 
 tasks.test {
@@ -20,5 +20,11 @@ tasks.test {
 }
 
 tasks.withType<KotlinCompile>() {
-  kotlinOptions.jvmTarget = "11"
+  kotlinOptions.jvmTarget = "17"
+}
+
+kotlin {
+  jvmToolchain {
+    (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(17))
+  }
 }
