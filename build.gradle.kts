@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
   kotlin("jvm") version "1.6.0"
 }
@@ -17,14 +15,4 @@ dependencies {
 
 tasks.test {
   useJUnitPlatform()
-}
-
-tasks.withType<KotlinCompile>() {
-  kotlinOptions.jvmTarget = "17"
-}
-
-kotlin {
-  jvmToolchain {
-    (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(17))
-  }
 }
