@@ -12,10 +12,19 @@ class Day06Test : ShouldSpec({
   val realInput = readInputFile("day06.txt")
 
   should("solve day 6, part 1 - sample input") {
-    day6.partOne(sampleInput) shouldBe 5934
+    day6.partOneAndTwo(sampleInput, 80) shouldBe 5934
   }
 
   should("solve day 6, part 1 - real input") {
-    day6.partOne(realInput) shouldBe 360610
+    day6.partOneAndTwo(realInput, 80) shouldBe 360610
   }
+
+  should("solve day 6, part 2 - sample input") {
+    day6.partOneAndTwo(sampleInput, 256) shouldBe 26_984_457_539
+  }
+
+  should("solve day 6, part 2 - real input") {
+    day6.partOneAndTwo(realInput, 256) shouldBe 26_984_457_539
+  }
+
 })

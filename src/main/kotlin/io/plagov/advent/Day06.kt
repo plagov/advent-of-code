@@ -1,9 +1,8 @@
 package io.plagov.advent
 
 class Day06 {
-  fun partOne(input: List<String>): Int {
+  fun partOneAndTwo(input: List<String>, days: Int): Long {
     val finalList = input.first().split(",").map { it.toInt() }.toMutableList()
-    val days = 80
 
     for (day in 1..days) {
 
@@ -20,6 +19,6 @@ class Day06 {
       }
     }
 
-    return finalList.count()
+    return finalList.count().toLong()
   }
 }
