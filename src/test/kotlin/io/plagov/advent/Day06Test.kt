@@ -18,13 +18,4 @@ class Day06Test : ShouldSpec({
   should("solve day 6, part 1 - real input") {
     day6.partOneAndTwo(realInput, 80) shouldBe 360610
   }
-
-  should("solve day 6, part 2 - sample input") {
-    day6.partOneAndTwo(sampleInput, 256) shouldBe 26_984_457_539
-  }
-
-  should("solve day 6, part 2 - real input") {
-    day6.partOneAndTwo(realInput, 256) shouldBe 26_984_457_539
-  }
-
 })
