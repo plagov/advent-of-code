@@ -9,12 +9,11 @@ class Day06 {
       val listIterator = finalList.listIterator()
 
       while (listIterator.hasNext()) {
-        val number = listIterator.next().dec()
-        if (number == -1) {
+        if (listIterator.next().dec() == -1) {
           listIterator.set(6)
           listIterator.add(8)
         } else {
-          listIterator.set(number)
+          listIterator.set(listIterator.next().dec())
         }
       }
     }
