@@ -1,43 +1,33 @@
 package io.plagov.advent
 
-import io.kotest.core.spec.style.ShouldSpec
-import io.kotest.matchers.shouldBe
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import util.readInputFile
-import java.io.File
 
-class Day01Test : ShouldSpec({
+class Day01Test {
 
-  val sample = """
-    199
-    200
-    208
-    210
-    200
-    207
-    240
-    269
-    260
-    263
-    """.trimIndent()
-    .split("\n")
+  private val sampleInput = readInputFile("day01-sample.txt")
+  private val taskInput = readInputFile("day01.txt")
 
-  val taskInput = readInputFile("day01.txt")
+  private val day1 = Day01()
 
-  val day1 = Day01()
-
-  should("find number of increases for sample input") {
-    day1.numbersOfIncreases(sample) shouldBe 7
+  @Test
+  fun solveFirstForSampleInput() {
+    assertEquals(7, day1.partOne(sampleInput))
   }
 
-  should("find number of increases for task input") {
-    day1.numbersOfIncreases(taskInput) shouldBe 1316
+  @Test
+  fun solveFirstForTaskInput() {
+    assertEquals(1316, day1.partOne(taskInput))
   }
 
-  should("find number of sum increases of three range windows for sample input") {
-    day1.numberOfSumIncreasesInThreeRangeWindow(sample) shouldBe 5
+  @Test
+  fun solveSecondForSampleInput() {
+    assertEquals(5, day1.partTwo(sampleInput))
   }
 
-  should("find number of sum increases of three range windows for task input") {
-    day1.numberOfSumIncreasesInThreeRangeWindow(taskInput) shouldBe 1344
+  @Test
+  fun solveSecondTaskInput() {
+    assertEquals(1344, day1.partTwo(taskInput))
   }
-})
+}
