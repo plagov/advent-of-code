@@ -21,24 +21,35 @@ class Day08 {
     val mapOfEntries = parseInputToMapOfEntries(input)
     val parsedPatterns = mapOfEntries.entries.map { it.key.split(" ") }
 
-    for (pattern in parsedPatterns) {
-      val one = pattern.first { it.length == 2 }
-      val seven = pattern.first { it.length == 3 }
-      val four = pattern.first { it.length == 4 }
+    val decodedPatterns = buildList {
+      for (pattern in parsedPatterns) {
+        val one = pattern.first { it.length == 2 }
+        val seven = pattern.first { it.length == 3 }
+        val four = pattern.first { it.length == 4 }
+        val eight = pattern.first { it.length == 7 }
+        val zeroNineOrSix = pattern.filter { it.length == 6 }
 
-      val digitA = pattern.filter { it.length in listOf(2, 3) }.map { it.toList() }.flatten().groupBy { it }.filter { it.value.size == 1 }.entries.single().key
+        val digitA = pattern.filter { it.length in listOf(2, 3) }.map { it.toList() }.flatten().groupBy { it }.filter { it.value.size == 1 }.entries.single().key
 
-      val (digitC, digitF) = if (one == seven.replace(digitA, Char.MIN_VALUE)) {
-        one.toCharArray()
-      } else {
-        seven.replace(digitA, Char.MIN_VALUE).toCharArray()
+        val (digitC, digitF) = if (one == seven.replace(digitA.toString(), "")) {
+          one.toCharArray()
+        } else {
+          seven.replace(digitA.toString(), "").toCharArray()
+        }
+
+        val digitBorD = four.toList().minus(seven.toList())
+
+        val digitDorE = zeroNineOrSix.map { it.toList() }.flatten().groupBy { it }.filter { it.value.size == 2 }.entries.map { it.key }.minus(digitC)
+
+        val digitD = digitBorD.intersect(digitDorE).single()
+        val digitB = digitBorD.minus(digitD).single()
+        val digitE = digitDorE.minus(digitD).single()
+        val digitG = eight.toList().minus(listOf(digitA, digitB, digitC, digitD, digitE, digitF)).single()
+
+        addAll(listOf(digitA, digitB, digitC, digitD, digitE, digitF, digitG))
       }
-
-      // find number 4 and locate digitB and digitD. Then compare with number 0 - it doesn't have digitD
-
-      println("")
     }
-
+    println("")
     return -1
   }
 
