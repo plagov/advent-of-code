@@ -25,4 +25,9 @@ class Day08Test {
   fun solveSecondForSampleInput() {
     assertEquals(61229, day8.partTwo(sampleInput))
   }
+
+  @Test
+  fun solveSecondForTaskInput() {
+    assertEquals(1_074_888, day8.partTwo(taskInput))
+  }
 }
