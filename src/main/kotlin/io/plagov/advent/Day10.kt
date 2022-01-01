@@ -4,26 +4,20 @@ private val invalidPairRegex = """\{\)|\{]|\{>|\[}|\[\)|\[>|\(}|\(]|\(>|<}|<\)|<
 private val matchingBracketsRegex = """\(\)|\[]|\{}|<>""".toRegex()
 
 class Day10 {
-  fun partOne(input: List<String>): Int {
-
-    val invalidCharacters = mutableListOf<Char>()
-
-    for (line in input) {
-      val modifiedLine = deleteMatchingBrackets(line)
-
-      if (modifiedLine.contains(invalidPairRegex)) {
-        val invalidChar = invalidPairRegex.find(modifiedLine)?.value?.last() ?: error("Fail to parse line: $modifiedLine")
-        invalidCharacters.add(invalidChar)
+  fun partOne(input: List<String>) = input
+    .map { deleteMatchingBrackets(it) }
+    .filter { it.contains(invalidPairRegex) }
+    .groupingBy { invalidPairRegex.find(it)?.value?.last() ?: error("Fail to parse line: $it") }
+    .eachCount()
+    .entries.sumOf { (char, score) ->
+      when (char) {
+        ')' -> score * 3
+        ']' -> score * 57
+        '}' -> score * 1197
+        '>' -> score * 25_137
+        else -> error("Unknown character $char")
       }
     }
-
-    val roundScore = invalidCharacters.count { it == ')' } * 3
-    val squareScore = invalidCharacters.count { it == ']' } * 57
-    val curlyScore = invalidCharacters.count { it == '}' } * 1_197
-    val angleScore = invalidCharacters.count { it == '>' } * 25_137
-
-    return roundScore + squareScore + curlyScore + angleScore
-  }
 
   private fun deleteMatchingBrackets(line: String): String {
     var s = line
