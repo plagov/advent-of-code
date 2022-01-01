@@ -25,16 +25,11 @@ class Day10 {
     return roundScore + squareScore + curlyScore + angleScore
   }
 
-  private fun deleteMatchingBrackets(s: String): String {
-    var s1 = s
-
-    while (s1.contains("()") || s1.contains("[]") || s1.contains("{}") || s1.contains("<>")) {
-      s1 = s1
-        .replace("()", "")
-        .replace("[]", "")
-        .replace("{}", "")
-        .replace("<>", "")
+  private fun deleteMatchingBrackets(line: String): String {
+    var s = line
+    while (s.contains(matchingBracketsRegex)) {
+      s = s.replace(matchingBracketsRegex, "")
     }
-    return s1
+    return s
   }
 }
