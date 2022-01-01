@@ -7,7 +7,7 @@ import util.readInputFile
 class Day09Test {
 
   private val sampleInput = readInputFile("day09-sample.txt")
-  private val realInput = readInputFile("day09.txt")
+  private val taskInput = readInputFile("day09.txt")
 
   private val day9 = Day09()
 
@@ -18,6 +18,6 @@ class Day09Test {
 
   @Test
   fun solveFirstForTaskInput() {
-    assertEquals(462, day9.partOne(realInput))
+    assertEquals(462, day9.partOne(taskInput))
   }
 }
