@@ -26,4 +26,25 @@ class Day10 {
     }
     return s
   }
+
+  fun partTwo(input: List<String>): Long {
+    val scores = input
+      .map { deleteMatchingBrackets(it) }
+      .filterNot { it.contains(invalidPairRegex) }
+      .map { calculateScoreForIncompleteLine(it) }
+      .sorted()
+      return scores[scores.size / 2]
+  }
+
+  private fun calculateScoreForIncompleteLine(line: String) =
+    line.reversed().toCharArray().fold(0L) { sum, bracket -> sum * 5 + scoreForBracket(bracket) }
+
+  private fun scoreForBracket(bracket: Char) =
+    when (bracket) {
+      '(' -> 1
+      '[' -> 2
+      '{' -> 3
+      '<' -> 4
+      else -> error("Unknown bracket: $bracket")
+    }
 }
