@@ -1,6 +1,5 @@
 package io.plagov.advent.aoc2021
 
-import io.plagov.advent.aoc2021.Day07
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import util.readInputFile
@@ -9,8 +8,8 @@ class Day07Test {
 
   private val day7 = Day07()
 
-  private val sampleInput = readInputFile("day07-sample.txt")
-  private val taskInput = readInputFile("day07.txt")
+  private val sampleInput = readInputFile("2021/day07-sample.txt")
+  private val taskInput = readInputFile("2021/day07.txt")
 
   @Test
   fun solveFirstForSampleInput() {
