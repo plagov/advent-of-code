@@ -1,14 +1,13 @@
 package io.plagov.advent.aoc2021
 
-import io.plagov.advent.aoc2021.Day01
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import util.readInputFile
 
 class Day01Test {
 
-  private val sampleInput = readInputFile("day01-sample.txt")
-  private val taskInput = readInputFile("day01.txt")
+  private val sampleInput = readInputFile("2021/day01-sample.txt")
+  private val taskInput = readInputFile("2021/day01.txt")
 
   private val day1 = Day01()
 

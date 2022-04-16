@@ -2,15 +2,14 @@ package io.plagov.advent.aoc2021
 
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
-import io.plagov.advent.aoc2021.Day06
 import util.readInputFile
 
 class Day06Test : ShouldSpec({
 
   val day6 = Day06()
   
-  val sampleInput = readInputFile("day06-sample.txt")
-  val realInput = readInputFile("day06.txt")
+  val sampleInput = readInputFile("2021/day06-sample.txt")
+  val realInput = readInputFile("2021/day06.txt")
 
   should("solve day 6, part 1 - sample input") {
     day6.partOneAndTwo(sampleInput, 80) shouldBe 5934
