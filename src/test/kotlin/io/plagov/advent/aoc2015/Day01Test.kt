@@ -9,6 +9,7 @@ class Day01Test {
   private val day1 = Day01()
 
   private val taskInput = readInputFile("2015/day01.txt")
+    .joinToString { it }.toCharArray().map { it.toString() }
 
   @Test
   fun solveFirstForTaskInput() {
