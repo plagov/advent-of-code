@@ -1,5 +1,6 @@
-package io.plagov.advent
+package io.plagov.advent.aoc2021
 
+import io.plagov.advent.aoc2021.Day01
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import util.readInputFile

@@ -1,7 +1,8 @@
-package io.plagov.advent
+package io.plagov.advent.aoc2021
 
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
+import io.plagov.advent.aoc2021.Day03
 import util.readInputFile
 
 class Day03Test : ShouldSpec({

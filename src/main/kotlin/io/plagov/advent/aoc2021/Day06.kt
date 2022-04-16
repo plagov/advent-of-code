@@ -1,4 +1,4 @@
-package io.plagov.advent
+package io.plagov.advent.aoc2021
 
 /**
  * This algorithm is highly inefficient. It "does" the job for part 1,

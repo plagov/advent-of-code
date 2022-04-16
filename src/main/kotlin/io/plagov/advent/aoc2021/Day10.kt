@@ -1,4 +1,4 @@
-package io.plagov.advent
+package io.plagov.advent.aoc2021
 
 private val invalidPairRegex = """\{\)|\{]|\{>|\[}|\[\)|\[>|\(}|\(]|\(>|<}|<\)|<]""".toRegex()
 private val matchingBracketsRegex = """\(\)|\[]|\{}|<>""".toRegex()

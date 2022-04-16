@@ -1,4 +1,4 @@
-package io.plagov.advent
+package io.plagov.advent.aoc2021
 
 class Day03 {
 
