@@ -12,6 +12,11 @@ class Day01Test {
 
   @Test
   fun solveFirstForTaskInput() {
-    assertEquals(232, day1.solve(taskInput))
+    assertEquals(232, day1.partOne(taskInput))
+  }
+
+  @Test
+  fun solveSecondForTaskInput() {
+    assertEquals(1783, day1.partTwo(taskInput))
   }
 }
