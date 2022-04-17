@@ -10,7 +10,6 @@ repositories {
 }
 
 dependencies {
-  implementation("io.kotest:kotest-runner-junit5:5.0.2")
   implementation("org.junit.jupiter:junit-jupiter:5.8.2")
 }
 

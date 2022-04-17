@@ -1,29 +1,34 @@
 package io.plagov.advent.aoc2021
 
-import io.kotest.core.spec.style.ShouldSpec
-import io.kotest.matchers.shouldBe
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import util.readInputFile
 
-class Day05Test : ShouldSpec({
+class Day05Test {
 
-  val day5 = Day05()
+  private val day5 = Day05()
 
-  val sampleInput = readInputFile("2021/day05-sample.txt")
-  val realInput = readInputFile("2021/day05.txt")
+  private val sampleInput = readInputFile("2021/day05-sample.txt")
+  private val taskInput = readInputFile("2021/day05.txt")
 
-  should("day 5, part 1 - sample") {
-    day5.partOne(sampleInput) shouldBe 5
+
+  @Test
+  fun solveFirstForSampleInput() {
+    assertEquals(5, day5.partOne(sampleInput))
   }
 
-  should("day 5, part 1 - task") {
-    day5.partOne(realInput) shouldBe 5576
+  @Test
+  fun solveFirstForTaskInput() {
+    assertEquals(5576, day5.partOne(taskInput))
   }
 
-  should("day 5, part 2 - sample") {
-    day5.partTwo(sampleInput) shouldBe 12
+  @Test
+  fun solveSecondForSampleInput() {
+    assertEquals(12, day5.partTwo(sampleInput))
   }
 
-  should("day 5, part 2 - task") {
-    day5.partTwo(realInput) shouldBe 18144
+  @Test
+  fun solveSecondForTaskInput() {
+    assertEquals(18144, day5.partTwo(taskInput))
   }
-})
+}

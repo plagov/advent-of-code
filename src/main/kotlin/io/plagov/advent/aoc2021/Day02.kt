@@ -2,7 +2,7 @@ package io.plagov.advent.aoc2021
 
 class Day02 {
 
-  fun multiplyHorizontalWithDepth(input: List<String>): Int {
+  fun partOne(input: List<String>): Int {
     val commands = parseInputToCommands(input)
 
     val horizontal = commands.filter { it.direction == "forward" }.sumOf { it.value }
@@ -22,7 +22,7 @@ class Day02 {
       }
   }
 
-  fun multiplyHorizontalAndDepthWithAim(input: List<String>): Int {
+  fun partTwo(input: List<String>): Int {
     val commands = parseInputToCommands(input)
 
     var aim = 0

@@ -1,29 +1,33 @@
 package io.plagov.advent.aoc2021
 
-import io.kotest.core.spec.style.ShouldSpec
-import io.kotest.matchers.shouldBe
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import util.readInputFile
 
-class Day03Test : ShouldSpec({
+class Day03Test {
 
-  val day3 = Day03()
+  private val day3 = Day03()
 
-  val sampleInput = readInputFile("2021/day03-sample.txt")
-  val taskInput = readInputFile("2021/day03.txt")
+  private val sampleInput = readInputFile("2021/day03-sample.txt")
+  private val taskInput = readInputFile("2021/day03.txt")
 
-  should("find decimal number from product of binary gamma and epsilon rates for sample input") {
-    day3.productOfDecimalGammaAndEpsilonRates(sampleInput) shouldBe 198
+  @Test
+  fun solveFirstForSampleInput() {
+    assertEquals(198, day3.partOne(sampleInput))
   }
 
-  should("find decimal number from product of binary gamma and epsilon rates for task input") {
-    day3.productOfDecimalGammaAndEpsilonRates(taskInput) shouldBe 3009600
+  @Test
+  fun solveFirstForTaskInput() {
+    assertEquals(3_009_600, day3.partOne(taskInput))
   }
 
-  should("find decimal number from product of oxygen and CO2 ratings from sample input") {
-    day3.productOfDecimalOxygenAndCO2ratings(sampleInput) shouldBe 230
+  @Test
+  fun solveSecondForSampleInput() {
+    assertEquals(230, day3.partTwo(sampleInput))
   }
 
-  should("find decimal number from product of oxygen and CO2 ratings from task input") {
-    day3.productOfDecimalOxygenAndCO2ratings(taskInput) shouldBe 6940518
+  @Test
+  fun solveSecondForTaskInput() {
+    assertEquals(6_940_518, day3.partTwo(taskInput))
   }
-})
+}

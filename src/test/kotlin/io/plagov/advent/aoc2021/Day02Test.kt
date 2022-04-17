@@ -1,29 +1,33 @@
 package io.plagov.advent.aoc2021
 
-import io.kotest.core.spec.style.ShouldSpec
-import io.kotest.matchers.shouldBe
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import util.readInputFile
 
-class Day02Test : ShouldSpec({
+class Day02Test {
 
-  val day2 = Day02()
+  private val day2 = Day02()
 
-  val sampleInput = readInputFile("2021/day02-sample.txt")
-  val taskInput = readInputFile("2021/day02.txt")
+  private val sampleInput = readInputFile("2021/day02-sample.txt")
+  private val taskInput = readInputFile("2021/day02.txt")
 
-  should("find correct number of multiplying horizontal and depth of sample input") {
-    day2.multiplyHorizontalWithDepth(sampleInput) shouldBe 150
+  @Test
+  fun solveFirstForSampleInput() {
+    assertEquals(150, day2.partOne(sampleInput))
   }
 
-  should("find correct number of multiplying horizontal and depth of task input") {
-    day2.multiplyHorizontalWithDepth(taskInput) shouldBe 1480518
+  @Test
+  fun solveFirstForTaskInput() {
+    assertEquals(1_480_518, day2.partOne(taskInput))
   }
 
-  should("find correct multiplication of horizontal position and depth with aim for sample input") {
-    day2.multiplyHorizontalAndDepthWithAim(sampleInput) shouldBe 900
+  @Test
+  fun solveSecondForSampleInput() {
+    assertEquals(900, day2.partTwo(sampleInput))
   }
 
-  should("find correct multiplication of horizontal position and depth with aim for task input") {
-    day2.multiplyHorizontalAndDepthWithAim(taskInput) shouldBe 1282809906
+  @Test
+  fun solveSecondForTaskInput() {
+    assertEquals(1_282_809_906, day2.partTwo(taskInput))
   }
-})
+}

@@ -2,7 +2,7 @@ package io.plagov.advent.aoc2021
 
 class Day03 {
 
-  fun productOfDecimalGammaAndEpsilonRates(input: List<String>): Int {
+  fun partOne(input: List<String>): Int {
     val verticalList = convertToVerticalList(input)
     val gammaRate = mostCommonElement(verticalList).joinToString("").toInt(2)
     val epsilonRate = leastCommonElement(verticalList).joinToString("").toInt(2)
@@ -34,7 +34,7 @@ class Day03 {
         ?: error("Something went wrong with list of bits: $listWithBits")
     }
 
-  fun productOfDecimalOxygenAndCO2ratings(input: List<String>): Int {
+  fun partTwo(input: List<String>): Int {
     val oxygen = findOxygenRate(input).joinToString("").toInt(2)
     val co2Rating = findCO2Rate(input).joinToString("").toInt(2)
     return oxygen * co2Rating
