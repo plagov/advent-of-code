@@ -2,13 +2,12 @@ package io.plagov.advent.aoc2015
 
 class Day03 {
   fun partOne(input: List<String>): Int {
-    val initialPoint = Point(0, 0)
+    var point = Point(0, 0)
     val visitedPoints = mutableSetOf<Point>()
-    visitedPoints.add(initialPoint)
-    var currentPoint = initialPoint
+    visitedPoints.add(point)
     input.forEach { move ->
-      currentPoint = nextPoint(move, currentPoint)
-      visitedPoints.add(currentPoint)
+      point = nextPoint(move, point)
+      visitedPoints.add(point)
     }
     return visitedPoints.size
   }
