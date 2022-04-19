@@ -15,4 +15,9 @@ class Day03Test {
   fun solveFirstForTaskInput() {
     assertEquals(2592, day3.partOne(taskInput))
   }
+
+  @Test
+  fun solveSecondForTaskInput() {
+    assertEquals(2360, day3.partTwo(taskInput))
+  }
 }
