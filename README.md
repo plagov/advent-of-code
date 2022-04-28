@@ -1,5 +1,5 @@
-# Advent of Code 2021
+# Advent of Code
 
-My solutions to Advent of Code 2021 puzzles. Solving using Kotlin standard library.
+My solutions to Advent of Code puzzles from different years. Solving using Kotlin standard library.
 All algorithms are located in `src/main/kotlin` package.
-Answers are validated with unit tests using Kotest framework in `src/test/kotlin` package.
+Answers are validated with unit tests under `src/test/kotlin`.
