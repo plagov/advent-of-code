@@ -13,4 +13,9 @@ class Day04Test {
   fun solveFirst() {
     assertEquals(346386, day4.partOne(input))
   }
+
+  @Test
+  fun solveSecond() {
+    assertEquals(9958218, day4.partTwo(input))
+  }
 }

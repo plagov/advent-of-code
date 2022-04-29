@@ -4,11 +4,15 @@ import java.security.MessageDigest
 
 class Day04 {
 
-  fun partOne(input: String): Int {
+  fun partOne(input: String) = findHashForInputStartingWithPrefix(input, "00000")
+
+  fun partTwo(input: String) = findHashForInputStartingWithPrefix(input, "000000")
+
+  private fun findHashForInputStartingWithPrefix(input: String, prefix: String): Int {
     var number = 1
     while (true) {
       val hash = "$input$number".toMD5()
-      if (hash.startsWith("00000")) {
+      if (hash.startsWith(prefix)) {
         break
       }
       number++
