@@ -7,14 +7,19 @@ class Day05 {
   }
 
   fun containsThreeVowels(s: String): Boolean {
-    val acceptedVowels = listOf('a', 'e', 'i', 'o', 'u')
-    val occurrences = s.toCharArray().count { it in acceptedVowels }
+    val acceptedVowels = listOf("a", "e", "i", "o", "u")
+    val occurrences = s.chunked(1).count { it in acceptedVowels }
     return occurrences >= 3
   }
 
   fun containsConsecutiveLetters(s: String): Boolean {
-    val windowed = s.split("").windowed(2)
+    val windowed = s.windowed(2)
     return windowed.any { pair -> pair.first() == pair.last() }
+  }
+
+  fun doesNotContainForbiddenLetters(s: String): Boolean {
+    val forbiddenLetters = listOf("ab", "cd", "pq", "xy")
+    return s.windowed(2).none { it in forbiddenLetters }
   }
 
 }

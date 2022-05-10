@@ -26,4 +26,9 @@ class Day05Test {
     assertTrue(day5.containsConsecutiveLetters("ugknbfddgicrmopn"))
   }
 
+  @Test
+  fun testStringDoesNotContainForbiddenLetters() {
+    assertTrue(day5.doesNotContainForbiddenLetters("ugknbfddgicrmopn"))
+  }
+
 }
