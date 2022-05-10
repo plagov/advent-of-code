@@ -2,9 +2,10 @@ package io.plagov.advent.aoc2015
 
 class Day05 {
 
-  fun partOne(input: List<String>): Int {
-    TODO("Not yet implemented")
-  }
+  fun partOne(input: List<String>) =
+    input.count { string ->
+      containsThreeVowels(string) && containsConsecutiveLetters(string) && doesNotContainForbiddenLetters(string)
+    }
 
   fun containsThreeVowels(s: String): Boolean {
     val acceptedVowels = listOf("a", "e", "i", "o", "u")

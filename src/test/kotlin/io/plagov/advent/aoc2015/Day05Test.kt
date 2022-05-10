@@ -13,7 +13,7 @@ class Day05Test {
 
   @Test
   fun solveFirst() {
-    assertEquals(42, day5.partOne(taskInput))
+    assertEquals(238, day5.partOne(taskInput))
   }
 
   @Test
