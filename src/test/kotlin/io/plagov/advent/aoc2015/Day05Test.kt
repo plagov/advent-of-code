@@ -20,4 +20,10 @@ class Day05Test {
   fun testThreeVowelsCounting() {
     assertTrue(day5.containsThreeVowels("ugknbfddgicrmopn"))
   }
+
+  @Test
+  fun testPresenceOfConsecutiveLetters() {
+    assertTrue(day5.containsConsecutiveLetters("ugknbfddgicrmopn"))
+  }
+
 }
