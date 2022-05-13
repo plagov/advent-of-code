@@ -22,12 +22,22 @@ class Day05Test {
 
   @Test
   fun testContainsNotOverlappingPairOfTwoLetters() {
-    assertTrue(day5.containsNotOVerlappingPairOfTwoLetters("qjhvhtzxzqqjkmpb"))
+    assertTrue(day5.containsNotOverlappingPairOfTwoLetters("qjhvhtzxzqqjkmpb"))
   }
 
   @Test
   fun testDoesNotContainNotOverlappingPairOfTwoLetters() {
-    assertFalse(day5.containsNotOVerlappingPairOfTwoLetters("aaa"))
+    assertFalse(day5.containsNotOverlappingPairOfTwoLetters("abcdefrghi"))
+  }
+
+  @Test
+  fun testContainsTwoRepeatingLettersWithSingleCharacterInBetween() {
+    assertTrue(day5.containsTwoRepeatingLettersWithSingleCharacterInBetween("abcdefeghi"))
+  }
+
+  @Test
+  fun testDoesNotContainTwoRepeatingLettersWithSingleCharacterInBetween() {
+    assertFalse(day5.containsTwoRepeatingLettersWithSingleCharacterInBetween("abcdefrghi"))
   }
 
   @Test

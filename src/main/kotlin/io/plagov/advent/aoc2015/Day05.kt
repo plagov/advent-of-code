@@ -27,7 +27,7 @@ class Day05 {
     TODO("Not yet implemented")
   }
 
-  fun containsNotOVerlappingPairOfTwoLetters(word: String): Boolean {
+  fun containsNotOverlappingPairOfTwoLetters(word: String): Boolean {
     val windows = word.windowed(2)
 
     val repeatingEntries = windows
@@ -36,6 +36,7 @@ class Day05 {
       .entries
       .filter { it.value > 1 }
       .map { it.key }
+      .ifEmpty { return false }
 
     return repeatingEntries.flatMap { en ->
       windows.withIndex().filter { it.value == en }
@@ -43,4 +44,7 @@ class Day05 {
     }.windowed(2)
       .none { it.last() - it.first() == 1 }
   }
+
+  fun containsTwoRepeatingLettersWithSingleCharacterInBetween(word: String) =
+    word.windowed(3).any { it.first() == it.last() }
 }
