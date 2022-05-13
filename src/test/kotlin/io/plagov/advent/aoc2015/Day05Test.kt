@@ -1,7 +1,6 @@
 package io.plagov.advent.aoc2015
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import util.readInputFile
 
@@ -14,6 +13,21 @@ class Day05Test {
   @Test
   fun solveFirst() {
     assertEquals(238, day5.partOne(taskInput))
+  }
+
+  @Test
+  fun solveSecond() {
+    assertEquals(42, day5.partTwo(taskInput))
+  }
+
+  @Test
+  fun testContainsNotOverlappingPairOfTwoLetters() {
+    assertTrue(day5.containsNotOVerlappingPairOfTwoLetters("qjhvhtzxzqqjkmpb"))
+  }
+
+  @Test
+  fun testDoesNotContainNotOverlappingPairOfTwoLetters() {
+    assertFalse(day5.containsNotOVerlappingPairOfTwoLetters("aaa"))
   }
 
   @Test

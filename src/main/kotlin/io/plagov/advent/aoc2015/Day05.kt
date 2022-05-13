@@ -23,4 +23,24 @@ class Day05 {
     return s.windowed(2).none { it in forbiddenLetters }
   }
 
+  fun partTwo(input: List<String>): Int {
+    TODO("Not yet implemented")
+  }
+
+  fun containsNotOVerlappingPairOfTwoLetters(word: String): Boolean {
+    val windows = word.windowed(2)
+
+    val repeatingEntries = windows
+      .groupingBy { it }
+      .eachCount()
+      .entries
+      .filter { it.value > 1 }
+      .map { it.key }
+
+    return repeatingEntries.flatMap { en ->
+      windows.withIndex().filter { it.value == en }
+        .map { it.index }
+    }.windowed(2)
+      .none { it.last() - it.first() == 1 }
+  }
 }
