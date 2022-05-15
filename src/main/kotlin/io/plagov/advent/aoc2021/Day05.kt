@@ -62,7 +62,7 @@ class Day05 {
       (point.first.y downTo point.second.y)
     }
 
-  private fun parseInputToLinesOfCoordinates(input: List<String>, ): List<Pair<Point, Point>> {
+  private fun parseInputToLinesOfCoordinates(input: List<String>): List<Pair<Point, Point>> {
     val regex = """^(\d+,\d+) -> (\d+,\d+)$""".toRegex()
     return input.map { line ->
       val (coordinate1, coordinate2) = regex.find(line)?.destructured ?: error("Couldn't parse the line $line")
