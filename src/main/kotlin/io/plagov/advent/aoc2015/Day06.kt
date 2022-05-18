@@ -15,13 +15,13 @@ class Day06 {
       val (command, start, _, end) = regex.find(instruction)?.destructured
         ?: error("Couldn't parse the instruction string: $instruction")
 
-      processCommand(command, start, end)
+      processLightning(command, start, end)
     }
 
     return grid.flatMap { it.asIterable() }.count { it == 1 }
   }
 
-  private fun processCommand(command: String, start: String, end: String) {
+  private fun processLightning(command: String, start: String, end: String) {
     val (startX, startY) = start.split(",").map { it.toInt() }
     val (endX, endY) = end.split(",").map { it.toInt() }
 
@@ -38,6 +38,38 @@ class Day06 {
               grid[x][y] = 0
             }
           }
+        }
+
+      }
+    }
+  }
+
+  fun partTwo(input: List<String>): Int {
+    input.forEach { instruction ->
+      val (command, start, _, end) = regex.find(instruction)?.destructured
+        ?: error("Couldn't parse the instruction string: $instruction")
+
+      processBrightness(command, start, end)
+    }
+
+    return grid.flatMap { it.asIterable() }.sum()
+  }
+
+  private fun processBrightness(command: String, start: String, end: String) {
+    val (startX, startY) = start.split(",").map { it.toInt() }
+    val (endX, endY) = end.split(",").map { it.toInt() }
+
+    for (x in startX..endX) {
+      for (y in startY..endY) {
+
+        when (command) {
+          "turn on" -> grid[x][y] += 1
+          "turn off" -> {
+            if (grid[x][y] > 0) {
+              grid[x][y] -= 1
+            }
+          }
+          "toggle" -> grid[x][y] += 2
         }
 
       }
