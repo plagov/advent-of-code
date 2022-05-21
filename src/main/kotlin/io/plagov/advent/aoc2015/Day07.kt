@@ -30,25 +30,14 @@ class Day07 {
 
   private val score = mutableMapOf<String, Int>()
 
-  /*
-d: 72
-e: 507
-f: 492
-g: 114
-h: 65412
-i: 65079
-x: 123
-y: 456
-   */
-
-  fun partOne(input: List<String>): Int {
+  fun partOne(input: List<String>, key: String): Int {
     input.forEach { cmd ->
       val regexRule = allRegex.find { rule -> rule.expression.matches(cmd) }
         ?: error("Command '$cmd' doesn't match any regex")
 
       regexRule.processCommand(cmd)
     }
-    return 0
+    return score[key] ?: error("Something went wrong")
   }
 
   private fun RegexRule.processCommand(command: String) {
@@ -58,7 +47,6 @@ y: 456
       AND_OR -> doAndOrOperation(expression, command)
       ASSIGN -> doAssignOperation(expression, command)
     }
-
   }
 
   private fun doAssignOperation(expression: Regex, command: String) {
@@ -99,8 +87,9 @@ y: 456
   }
 
   private fun doNotOperation(expression: Regex, command: String) {
-    val (_, start, end) = expression.find(command)?.destructured
+    val (left, target) = expression.find(command)?.destructured
       ?: error("Couldn't parse the command $command by the $expression regex")
-    // TODO check how to do NOT operation
+    val lft = score[left] ?: return
+    score[target] = lft.xor(65535)
   }
 }
