@@ -10,7 +10,9 @@ class Day07 {
 
   private val andOrRegex = """^(\w+) (OR|AND) (\w+) -> (\w+)$""".toRegex()
 
-  private val assignRegex = """^(\d+) -> (\w+)$""".toRegex()
+  private val assignValueRegex = """^(\d+) -> (\w+)$""".toRegex()
+
+  private val assignFromAnotherRegex = """^(\w+) -> (\w+)$""".toRegex()
 
   private data class RegexRule(
     val expression: Regex,
@@ -18,26 +20,33 @@ class Day07 {
   )
 
   enum class CommandType {
-    NOT, SHIFT, AND_OR, ASSIGN
+    NOT, SHIFT, AND_OR, ASSIGN_VALUE, ASSIGN_FROM_ANOTHER
   }
 
   private val allRegex = listOf(
     RegexRule(notRegex, NOT),
     RegexRule(shiftRegex, SHIFT),
     RegexRule(andOrRegex, AND_OR),
-    RegexRule(assignRegex, ASSIGN)
+    RegexRule(assignValueRegex, ASSIGN_VALUE),
+    RegexRule(assignFromAnotherRegex, ASSIGN_FROM_ANOTHER)
   )
 
   private val score = mutableMapOf<String, Int>()
 
   fun partOne(input: List<String>, key: String): Int {
+
+    input.filter { it.matches(assignValueRegex) }.forEach { cmd ->
+      val (value, target) = assignValueRegex.find(cmd)?.destructured ?: error("Error parsing")
+      score[target] = value.toInt()
+    }
+
     input.forEach { cmd ->
       val regexRule = allRegex.find { rule -> rule.expression.matches(cmd) }
         ?: error("Command '$cmd' doesn't match any regex")
 
       regexRule.processCommand(cmd)
     }
-    return score[key] ?: error("Something went wrong")
+    return score[key] ?: error("No value found for key '$key'")
   }
 
   private fun RegexRule.processCommand(command: String) {
@@ -45,11 +54,18 @@ class Day07 {
       NOT -> doNotOperation(expression, command)
       SHIFT -> doShiftOperation(expression, command)
       AND_OR -> doAndOrOperation(expression, command)
-      ASSIGN -> doAssignOperation(expression, command)
+      ASSIGN_VALUE -> doAssignValueOperation(expression, command)
+      ASSIGN_FROM_ANOTHER -> doAssignFromAnotherOperation(expression, command)
     }
   }
 
-  private fun doAssignOperation(expression: Regex, command: String) {
+  private fun doAssignFromAnotherOperation(expression: Regex, command: String) {
+    val (left, target) = expression.find(command)?.destructured ?: error("Error")
+    val lft = score[left] ?: return
+    score[target] = lft
+  }
+
+  private fun doAssignValueOperation(expression: Regex, command: String) {
     val (value, target) = expression.find(command)?.destructured ?: error("Error")
     score[target] = value.toInt()
   }
@@ -89,7 +105,6 @@ class Day07 {
   private fun doNotOperation(expression: Regex, command: String) {
     val (left, target) = expression.find(command)?.destructured
       ?: error("Couldn't parse the command $command by the $expression regex")
-    val lft = score[left] ?: return
-    score[target] = lft.xor(65535)
+    score[target] = left.toInt().xor(65535)
   }
 }
