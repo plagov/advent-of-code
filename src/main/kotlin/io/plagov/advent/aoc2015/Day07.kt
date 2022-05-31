@@ -33,12 +33,50 @@ class Day07 {
 
   private val score = mutableMapOf<String, Int>()
 
-  fun partOne(input: List<String>, key: String): Int {
+  fun partOne(input: List<String>, searchingKey: String): Int {
 
+    // do assignments first
     input.filter { it.matches(assignValueRegex) }.forEach { cmd ->
       val (value, target) = assignValueRegex.find(cmd)?.destructured ?: error("Error parsing")
       score[target] = value.toInt()
     }
+
+    // do shifting
+    val shiftMap = score.toMutableMap()
+    score.forEach { (key, value) ->
+      val reg = """^${key} ([L|R]SHIFT) (\d+) -> (\w+)${'$'}""".toRegex()
+      input
+        .filter { it.matches(reg) }
+        .forEach { cmd ->
+          val (operation, bitCount, target) = reg.find(cmd)?.destructured ?: error("Error parsing")
+          val result = getShiftResult(operation, value, bitCount.toInt())
+          shiftMap[target] = result
+        }
+    }
+    score.putAll(shiftMap)
+
+    // do NOT operation
+    val notMap = score.toMutableMap()
+    score.forEach { (key, value) ->
+      val reg = """^NOT $key -> (\w+)$""".toRegex()
+      input
+        .filter { it.matches(reg) }
+        .forEach { cmd ->
+          val (target) = reg.find(cmd)?.destructured ?: error("Error parsing")
+          notMap[target] = value.xor(65535)
+        }
+    }
+    score.putAll(notMap)
+
+    // operations with two
+    val twoKeysMap = score.toMutableMap()
+    score.forEach { (key1, value1) ->
+      score.forEach { (key2, value2) ->
+        val reg = """^$key1 (OR|AND|RSHIFT|LSHIFT) $key2 -> (\w+)$""".toRegex()
+      }
+    }
+
+    println("")
 
     input.forEach { cmd ->
       val regexRule = allRegex.find { rule -> rule.expression.matches(cmd) }
@@ -46,7 +84,17 @@ class Day07 {
 
       regexRule.processCommand(cmd)
     }
-    return score[key] ?: error("No value found for key '$key'")
+    return score[searchingKey] ?: error("No value found for key '$searchingKey'")
+  }
+
+  private fun getShiftResult(
+    operation: String,
+    left: Int,
+    bitCount: Int
+  ) = when (operation) {
+    "RSHIFT" -> left shr bitCount
+    "LSHIFT" -> left shl bitCount
+    else -> error("Unknown operation: $operation")
   }
 
   private fun RegexRule.processCommand(command: String) {
