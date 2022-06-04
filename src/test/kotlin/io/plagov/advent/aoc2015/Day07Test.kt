@@ -40,7 +40,7 @@ NOT y -> i
 
   @Test
   fun solveFirstForTaskInput() {
-    assertEquals(-1, day7.partOne(taskInput, "a"))
+    assertEquals(3176, day7.partOne(taskInput, "a"))
   }
 
   private fun sampleExpectedValues() = Stream.of(
