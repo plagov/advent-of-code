@@ -1,5 +1,5 @@
 plugins {
-  kotlin("jvm") version "1.6.21"
+  kotlin("jvm") version "1.7.0"
 }
 
 group = "io.plagov"
@@ -18,4 +18,15 @@ dependencies {
 
 tasks.test {
   useJUnitPlatform()
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+  kotlinOptions {
+    freeCompilerArgs = listOf(
+      "-Xuse-k2",
+      "-Xbackend-threads=4"
+    )
+    jvmTarget = "11"
+    languageVersion = "1.7"
+  }
 }
