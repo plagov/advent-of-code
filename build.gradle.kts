@@ -19,3 +19,14 @@ dependencies {
 tasks.test {
   useJUnitPlatform()
 }
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+  kotlinOptions {
+    freeCompilerArgs = listOf(
+      "-Xuse-k2",
+      "-Xbackend-threads=4"
+    )
+    jvmTarget = "11"
+    languageVersion = "1.7"
+  }
+}
