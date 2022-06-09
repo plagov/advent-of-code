@@ -1,48 +1,23 @@
 package io.plagov.advent.aoc2015
 
-import io.plagov.advent.aoc2015.Day07.CommandType.*
-
 class Day07 {
-
-  private val notRegex = """^NOT (\w+) -> (\w+)$""".toRegex()
-
-  private val shiftRegex = """^(\w+) ([L|R]SHIFT) (\d+) -> (\w+)$""".toRegex()
-
-  private val andOrRegex = """^(\w+) (OR|AND) (\w+) -> (\w+)$""".toRegex()
 
   private val assignValueRegex = """^(\d+) -> (\w+)$""".toRegex()
 
-  private val assignFromAnotherRegex = """^(\w+) -> (\w+)$""".toRegex()
+  private var score = mutableMapOf<String, Int?>()
 
-  private data class RegexRule(
-    val expression: Regex,
-    val type: CommandType
-  )
+  private fun initializeAllKeys(input: List<String>) {
+    val reg = """(.*) -> (\w+)""".toRegex()
 
-  enum class CommandType {
-    NOT, SHIFT, AND_OR, ASSIGN_VALUE, ASSIGN_FROM_ANOTHER
+    score = input.associateTo(score) { inp ->
+      val (_, key) = reg.find(inp)?.destructured ?: error("Couldn't parse the line $inp by regex $reg")
+      key to null
+    }
   }
-
-  private val allRegex = listOf(
-    RegexRule(notRegex, NOT),
-    RegexRule(shiftRegex, SHIFT),
-    RegexRule(andOrRegex, AND_OR),
-    RegexRule(assignValueRegex, ASSIGN_VALUE),
-    RegexRule(assignFromAnotherRegex, ASSIGN_FROM_ANOTHER)
-  )
-
-//  private val score = mutableMapOf<String, Any?>()
 
   fun partOne(input: List<String>, searchingKey: String): Int {
 
-    val reg = """(.*) -> (\w+)""".toRegex()
-
-    val score: MutableMap<String, Int?> = input.associate { inp ->
-      val (_, key) = reg.find(inp)?.destructured ?: error("Couldn't parse")
-      key to null
-    }.toMutableMap()
-
-    println("")
+    initializeAllKeys(input)
 
     while (score[searchingKey] == null) {
 
@@ -142,83 +117,21 @@ class Day07 {
           source in knownKeysAfterSixSteps
         }
         .forEach { cmd ->
-        val (source, target) = assignFromAnotherReg.find(cmd)?.destructured ?: error("Error parsing")
-        if (score[target] == null) {
-          score[target] = score[source]
+          val (source, target) = assignFromAnotherReg.find(cmd)?.destructured ?: error("Error parsing")
+          if (score[target] == null) {
+            score[target] = score[source]
+          }
         }
-      }
 
-     println("")
     }
     return score[searchingKey] ?: error("No value found for key '$searchingKey'")
   }
 
-  private fun getShiftResult(
-    operation: String,
-    left: Int,
-    bitCount: Int
-  ) = when (operation) {
-    "RSHIFT" -> left shr bitCount
-    "LSHIFT" -> left shl bitCount
-    else -> error("Unknown operation: $operation")
-  }
+  private fun getShiftResult(operation: String, left: Int, bitCount: Int) =
+    when (operation) {
+      "RSHIFT" -> left shr bitCount
+      "LSHIFT" -> left shl bitCount
+      else -> error("Unknown operation: $operation")
+    }
 
-//  private fun RegexRule.processCommand(command: String) {
-//    when (type) {
-//      NOT -> doNotOperation(expression, command)
-//      SHIFT -> doShiftOperation(expression, command)
-//      AND_OR -> doAndOrOperation(expression, command)
-//      ASSIGN_VALUE -> doAssignValueOperation(expression, command)
-//      ASSIGN_FROM_ANOTHER -> doAssignFromAnotherOperation(expression, command)
-//    }
-//  }
-
-//  private fun doAssignFromAnotherOperation(expression: Regex, command: String) {
-//    val (left, target) = expression.find(command)?.destructured ?: error("Error")
-//    val lft = score[left] ?: return
-//    score[target] = lft
-//  }
-
-//  private fun doAssignValueOperation(expression: Regex, command: String) {
-//    val (value, target) = expression.find(command)?.destructured ?: error("Error")
-//    score[target] = value.toInt()
-//  }
-
-//  private fun doAndOrOperation(expression: Regex, command: String) {
-//    val (left, operation, right, target) = expression.find(command)?.destructured ?: error("Later")
-//    val l = score[left]
-//    val r = score[right]
-//    if (l == null || r == null) {
-//      return
-//    } else {
-//      val result = when (operation) {
-//        "AND" -> l and r
-//        "OR" -> l or r
-//        else -> error("Unknown operation $operation")
-//      }
-//      score[target] = result
-//    }
-//  }
-
-//  private fun doShiftOperation(expression: Regex, command: String) {
-//    val (left, operation, bit, target) = expression.find(command)?.destructured ?: error("Later")
-//    val lft = score[left]
-//    val bitCount = bit.toInt()
-//    if (lft == null) {
-//      return
-//    } else {
-//      val result = when (operation) {
-//        "LSHIFT" -> lft shl bitCount
-//        "RSHIFT" -> lft shr bitCount
-//        else -> error("Unknown operation $operation")
-//      }
-//      score[target] = result
-//    }
-//  }
-
-//  private fun doNotOperation(expression: Regex, command: String) {
-//    val (left, target) = expression.find(command)?.destructured
-//      ?: error("Couldn't parse the command $command by the $expression regex")
-//    score[target] = left.toInt().xor(65535)
-//  }
 }
