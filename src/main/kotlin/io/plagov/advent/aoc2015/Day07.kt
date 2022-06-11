@@ -22,6 +22,23 @@ class Day07 {
     return score[searchingKey] ?: error("No value found for key '$searchingKey'")
   }
 
+  fun partTwo(input: List<String>, searchingKey: String): Int {
+    initializeAllKeys(input)
+    score["b"] = 3176
+
+    while (score[searchingKey] == null) {
+      Signals(input)
+        .assignDigitsToKeys()
+        .doShiftOperations()
+        .doNotOperations()
+        .doOrOperations()
+        .doAndOperationsBetweenKeys()
+        .doAndOperationWithDigit()
+        .doAssignmentFromAnotherKey()
+    }
+    return score[searchingKey] ?: error("No value found for key '$searchingKey'")
+  }
+
   private fun initializeAllKeys(input: List<String>) {
     val reg = """(.*) -> (\w+)""".toRegex()
 
