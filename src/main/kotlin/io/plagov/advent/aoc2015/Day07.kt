@@ -69,11 +69,11 @@ class Day07 {
     this.value
       .filter { it.matches(notReg) }
       .filter {
-        val (left, _) = notReg.find(it)?.destructured ?: error("123")
+        val (left, _) = notReg.find(it)?.destructured ?: error("Error parsing")
         left in knownKeysAfterTwoSteps
       }
       .forEach { cmd ->
-        val (left, target) = notReg.find(cmd)?.destructured ?: error("123")
+        val (left, target) = notReg.find(cmd)?.destructured ?: error("Error parsing")
         if (score[target] == null) {
           score[target] = score[left]?.xor(65535)
         }
@@ -87,11 +87,11 @@ class Day07 {
     this.value
       .filter { it.matches(orReg) }
       .filter {
-        val (left, right, _) = orReg.find(it)?.destructured ?: error("213")
+        val (left, right, _) = orReg.find(it)?.destructured ?: error("Error parsing")
         knownKeysAfterThreeSteps.containsAll(listOf(left, right))
       }
       .forEach { cmd ->
-        val (left, right, target) = orReg.find(cmd)?.destructured ?: error("213")
+        val (left, right, target) = orReg.find(cmd)?.destructured ?: error("Error parsing")
         if (score[target] == null) {
           score[target] = score[left]!! or score[right]!!
         }
@@ -104,11 +104,11 @@ class Day07 {
     this.value
       .filter { it.matches(andOperationBetweenSignalsRegex) }
       .filter {
-        val (left, right, _) = andOperationBetweenSignalsRegex.find(it)?.destructured ?: error("213")
+        val (left, right, _) = andOperationBetweenSignalsRegex.find(it)?.destructured ?: error("Error parsing")
         knownKeysAfterFourSteps.containsAll(listOf(left, right))
       }
       .forEach { cmd ->
-        val (left, right, target) = andOperationBetweenSignalsRegex.find(cmd)?.destructured ?: error("213")
+        val (left, right, target) = andOperationBetweenSignalsRegex.find(cmd)?.destructured ?: error("Error parsing")
         if (score[target] == null) {
           score[target] = score[left]!! and score[right]!!
         }
@@ -122,11 +122,11 @@ class Day07 {
     this.value
       .filter { it.matches(andWithDigitReg) }
       .filter {
-        val (_, right, _) = andOperationBetweenSignalsRegex.find(it)?.destructured ?: error("213")
+        val (_, right, _) = andOperationBetweenSignalsRegex.find(it)?.destructured ?: error("Error parsing")
         right in knownKeysAfterFiveSteps
       }
       .forEach { cmd ->
-        val (left, right, target) = andOperationBetweenSignalsRegex.find(cmd)?.destructured ?: error("213")
+        val (left, right, target) = andOperationBetweenSignalsRegex.find(cmd)?.destructured ?: error("Error parsing")
         if (score[target] == null) {
           score[target] = left.toInt() and score[right]!!
         }
@@ -140,7 +140,7 @@ class Day07 {
     this.value
       .filter { it.matches(assignFromAnotherReg) }
       .filter {
-        val (source, _) = assignFromAnotherReg.find(it)?.destructured ?: error("123")
+        val (source, _) = assignFromAnotherReg.find(it)?.destructured ?: error("Error parsing")
         source in knownKeysAfterSixSteps
       }
       .forEach { cmd ->
