@@ -12,9 +12,9 @@ class Day08 {
       )
     }
 
-    return data.sumOf { str ->
-      calculate().apply(str).contentLength
-    }
+    val totalRawLength = data.sumOf { str -> str.rawLength }
+    val totalContentLength = data.sumOf { str -> calculate().apply(str).contentString.length }
+    return totalRawLength - totalContentLength
   }
 
   private fun calculate(): Rule<StringData> {
