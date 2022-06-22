@@ -6,10 +6,10 @@ class RemoveEscapedCharactersRule : AbstractRule<StringData>() {
     val doubleQuoteRegex = """\\"""".toRegex()
     val backslashRegex = """\\\\""".toRegex()
 
-    val replacedString = stringData.contentString
+    val replacedString = stringData.transformedString
       .replace(doubleQuoteRegex, "\"")
       .replace(backslashRegex, "\\\\")
 
-    return applyNextRule(stringData.copy(contentString = replacedString))
+    return applyNextRule(stringData.copy(transformedString = replacedString))
   }
 }

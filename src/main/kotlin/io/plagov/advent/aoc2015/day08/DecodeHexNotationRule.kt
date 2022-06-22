@@ -4,7 +4,7 @@ class DecodeHexNotationRule : AbstractRule<StringData>() {
 
   override fun apply(stringData: StringData): StringData {
     val hexRegex = """\\x[0-9aA-fF]{2}""".toRegex()
-    var s = stringData.contentString
+    var s = stringData.transformedString
     if (s.contains(hexRegex)) {
       hexRegex.findAll(s).map { it.value }.toList()
         .map {
@@ -13,7 +13,7 @@ class DecodeHexNotationRule : AbstractRule<StringData>() {
         }.forEach { hexGroup ->
           s = s.replace(hexGroup.first, hexGroup.second)
         }
-      return stringData.copy(contentString = s)
+      return stringData.copy(transformedString = s)
     }
     return stringData
   }
