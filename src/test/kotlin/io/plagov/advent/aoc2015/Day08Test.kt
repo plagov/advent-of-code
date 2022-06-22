@@ -9,7 +9,6 @@ class Day08Test {
   private val day8 = Day08()
 
   private val taskInput = readInputFile("2015/day08.txt")
-  private val sampleInput = readInputFile("2015/day08-sample.txt")
 
   @Test
   fun solveFirst() {
@@ -18,12 +17,6 @@ class Day08Test {
 
   @Test
   fun solveSecond() {
-    assertEquals(19, day8.partTwo(taskInput))
-//    assertEquals(19, day8.partTwo(sampleInput))
+    assertEquals(2046, day8.partTwo(taskInput))
   }
-  /*
-  wrong:
-  1834
-  1933
-   */
 }

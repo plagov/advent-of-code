@@ -4,9 +4,9 @@ class EncodeBackslashRule : AbstractRule<StringData>() {
 
   override fun apply(stringData: StringData): StringData {
     val backslashRegex = """\\\\""".toRegex()
-    if (stringData.originalString.contains(backslashRegex)) {
-      val count = backslashRegex.findAll(stringData.originalString).count()
-      return applyNextRule(stringData.copy(lengthOfTransformedString = stringData.lengthOfTransformedString + count))
+    if (stringData.transformedString.contains(backslashRegex)) {
+      val count = backslashRegex.findAll(stringData.transformedString).count()
+      return applyNextRule(stringData.copy(lengthOfTransformedString = stringData.lengthOfTransformedString + count * 2))
     }
     return applyNextRule(stringData)
   }

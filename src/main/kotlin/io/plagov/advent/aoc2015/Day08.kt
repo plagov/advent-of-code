@@ -42,19 +42,21 @@ class Day08 {
     }
 
     val totalRawLength = data.sumOf { str -> str.lengthOfOriginalString }
-    val mymap = data.map { str -> calculateForPartTwo().apply(str) }
-    val totalTransformedLength = mymap.sumOf { it.lengthOfTransformedString }
+    val totalTransformedLength = data.sumOf { str -> calculateForPartTwo().apply(str).lengthOfTransformedString }
 
-    return totalTransformedLength - totalRawLength;
+    return totalTransformedLength - totalRawLength
   }
 
   private fun calculateForPartTwo(): Rule<StringData> {
-    return EncodeQuotesRule()
+    return RemoveQuotesRule()
       .setNextRule(
-        EncodeDoubleQuotesRule()
+        EncodeQuotesRule()
           .setNextRule(
-            EncodeBackslashRule()
-              .setNextRule(EncodeHexNotationRule())
+            EncodeDoubleQuotesRule()
+              .setNextRule(
+                EncodeBackslashRule()
+                  .setNextRule(EncodeHexNotationRule())
+              )
           )
       )
   }

@@ -4,8 +4,8 @@ class EncodeDoubleQuotesRule : AbstractRule<StringData>() {
 
   override fun apply(stringData: StringData): StringData {
     val doubleQuoteRegex = """\\"""".toRegex()
-    if (stringData.originalString.contains(doubleQuoteRegex)) {
-      val count = doubleQuoteRegex.findAll(stringData.originalString).count()
+    if (stringData.transformedString.contains(doubleQuoteRegex)) {
+      val count = doubleQuoteRegex.findAll(stringData.transformedString).count()
       return applyNextRule(stringData.copy(lengthOfTransformedString = stringData.lengthOfTransformedString + count * 2))
     }
     return applyNextRule(stringData)
