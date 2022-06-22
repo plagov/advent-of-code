@@ -7,3 +7,4 @@ insert_final_newline = true
 [{*.kt, *.kts}]
 indent_style = space
 indent_size = 2
+ij_kotlin_name_count_to_use_star_import = 99

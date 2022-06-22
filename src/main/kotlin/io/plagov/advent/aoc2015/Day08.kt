@@ -1,6 +1,10 @@
 package io.plagov.advent.aoc2015
 
-import io.plagov.advent.aoc2015.day08.*
+import io.plagov.advent.aoc2015.day08.DecodeHexNotationRule
+import io.plagov.advent.aoc2015.day08.RemoveEscapedCharactersRule
+import io.plagov.advent.aoc2015.day08.RemoveQuotesRule
+import io.plagov.advent.aoc2015.day08.Rule
+import io.plagov.advent.aoc2015.day08.StringData
 
 class Day08 {
 
@@ -19,7 +23,9 @@ class Day08 {
 
   private fun calculate(): Rule<StringData> {
     return RemoveQuotesRule()
-      .setNextRule(RemoveEscapedCharactersRule()
-        .setNextRule(DecodeHexNotationRule()))
+      .setNextRule(
+        RemoveEscapedCharactersRule()
+          .setNextRule(DecodeHexNotationRule())
+      )
   }
 }
