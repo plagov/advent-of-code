@@ -39,5 +39,4 @@ class Day03 {
   }
 
   private data class Point(val x: Int, val y: Int)
-
 }

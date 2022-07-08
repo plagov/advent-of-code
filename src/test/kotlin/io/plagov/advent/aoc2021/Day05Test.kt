@@ -11,7 +11,6 @@ class Day05Test {
   private val sampleInput = readInputFile("2021/day05-sample.txt")
   private val taskInput = readInputFile("2021/day05.txt")
 
-
   @Test
   fun solveFirstForSampleInput() {
     assertEquals(5, day5.partOne(sampleInput))

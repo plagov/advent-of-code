@@ -18,7 +18,7 @@ class Day07 {
       fuelConsumption[position] = fuel
     }
 
-   return fuelConsumption.minByOrNull { it.value }?.value ?: error("Couldn't sort the map")
+    return fuelConsumption.minByOrNull { it.value }?.value ?: error("Couldn't sort the map")
   }
 
   fun partTwo(input: List<String>): Int {

@@ -21,5 +21,7 @@ jobs:
           distribution: 'zulu'
           java-version: 17
           cache: 'gradle'
-      - name: Run Kotest tests
+      - name: Lint
+        run: ./gradlew ktlintCheck
+      - name: Run tests
         run: ./gradlew test

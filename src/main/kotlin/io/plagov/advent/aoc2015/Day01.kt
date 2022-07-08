@@ -10,9 +10,10 @@ class Day01 {
 
   fun partTwo(input: List<String>): Int {
     val ints = input
-      .map { it
-        .replace("""\(""".toRegex(), "1")
-        .replace("""\)""".toRegex(), "-1")
+      .map {
+        it
+          .replace("""\(""".toRegex(), "1")
+          .replace("""\)""".toRegex(), "-1")
       }
       .map { it.toInt() }
     var position = 1
@@ -26,5 +27,4 @@ class Day01 {
     }
     return position + 1
   }
-
 }

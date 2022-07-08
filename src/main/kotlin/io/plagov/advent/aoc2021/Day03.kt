@@ -18,7 +18,7 @@ class Day03 {
         verList.add(inp[index].toString())
       }
       verticalList.add(verList)
-      }
+    }
     return verticalList
   }
 
@@ -26,7 +26,7 @@ class Day03 {
     verticalList.map { listWithBits ->
       listWithBits.groupBy { it }.maxByOrNull { bitEntry -> bitEntry.value.size }?.key
         ?: error("Something went wrong with list of bits: $listWithBits")
-      }
+    }
 
   private fun leastCommonElement(verticalList: MutableList<List<String>>) =
     verticalList.map { listWithBits ->

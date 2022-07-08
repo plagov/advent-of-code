@@ -33,7 +33,7 @@ class Day10 {
       .filterNot { it.contains(invalidPairRegex) }
       .map { calculateScoreForIncompleteLine(it) }
       .sorted()
-      return scores[scores.size / 2]
+    return scores[scores.size / 2]
   }
 
   private fun calculateScoreForIncompleteLine(line: String) =

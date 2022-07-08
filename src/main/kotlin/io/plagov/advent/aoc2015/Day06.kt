@@ -39,7 +39,6 @@ class Day06 {
             }
           }
         }
-
       }
     }
   }
@@ -71,9 +70,7 @@ class Day06 {
           }
           "toggle" -> grid[x][y] += 2
         }
-
       }
     }
   }
-
 }

@@ -22,8 +22,8 @@ class Day05 {
     val linesByEqualX = linesByEqualX(pairsOfCoordinateLines)
     val linesByEqualY = linesByEqualY(pairsOfCoordinateLines)
 
-     return (verticalLines + linesByEqualX + linesByEqualY)
-       .groupingBy { it }.eachCount().entries.count { it.value >= 2 }
+    return (verticalLines + linesByEqualX + linesByEqualY)
+      .groupingBy { it }.eachCount().entries.count { it.value >= 2 }
   }
 
   private fun linesByEqualY(pairsOfCoordinateLines: List<Pair<Point, Point>>) =
