@@ -21,5 +21,9 @@ jobs:
           distribution: 'zulu'
           java-version: 17
           cache: 'gradle'
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
       - name: Run Kotest tests
         run: ./gradlew test
