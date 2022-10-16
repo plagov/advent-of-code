@@ -3,8 +3,8 @@ package io.plagov.advent.aoc2015
 class Day02 {
 
   fun partOne(input: List<String>) = input
-      .map { parseDimensions(it) }
-      .sumOf { dimension -> calculateSurfaceArea(dimension) + calculateExtraPaper(dimension) }
+    .map { parseDimensions(it) }
+    .sumOf { dimension -> calculateSurfaceArea(dimension) + calculateExtraPaper(dimension) }
 
   fun partTwo(input: List<String>) = input
     .map { parseDimensions(it) }
@@ -38,5 +38,4 @@ class Day02 {
     val (l, w, h) = dimensions
     return l * w * h
   }
-
 }

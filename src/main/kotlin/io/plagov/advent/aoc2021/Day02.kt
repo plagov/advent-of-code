@@ -19,7 +19,7 @@ class Day02 {
       val (direction, value) = regex.find(command)?.destructured
         ?: error("Failed to parse the line '$command' with given regex $regex")
       Command(direction, value.toInt())
-      }
+    }
   }
 
   fun partTwo(input: List<String>): Int {

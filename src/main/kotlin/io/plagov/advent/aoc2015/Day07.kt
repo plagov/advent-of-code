@@ -48,7 +48,6 @@ class Day07 {
     }
   }
 
-
   @JvmInline
   private value class Signals(val value: List<String>)
 
@@ -175,5 +174,4 @@ class Day07 {
       "LSHIFT" -> left shl bitCount
       else -> error("Unknown operation: $operation")
     }
-
 }
