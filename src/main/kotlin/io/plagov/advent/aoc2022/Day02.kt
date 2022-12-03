@@ -7,21 +7,41 @@ class Day02 {
   fun partOne(input: List<String>): Int {
     input
       .map { parseInputToCombination(it) }
-      .forEach { resolveRound(it) }
+      .forEach { resolveRoundForFirstPart(it) }
     return score
   }
 
-  /*
-  A, X - rock,     1
-  B, Y - paper,    2
-  C, Z - scissors, 3
+  fun partTwo(input: List<String>): Int {
+    input
+      .map { parseInputToCombination(it) }
+      .forEach { resolveRoundForSecondPart(it) }
+    return score
+  }
 
-  win -  6
-  draw - 3
-  lose - 0
-   */
+  private fun resolveRoundForSecondPart(round: Combination) {
+    val (opponent, you) = round
+    if (opponent == "A" && you == "X") {
+      score += (0 + 3)
+    } else if (opponent == "A" && you == "Y") {
+      score += (3 + 1)
+    } else if (opponent == "A" && you == "Z") {
+      score += (6 + 2)
+    } else if (opponent == "B" && you == "X") {
+      score += (0 + 1)
+    } else if (opponent == "B" && you == "Y") {
+      score += (3 + 2)
+    } else if (opponent == "B" && you == "Z") {
+      score += (6 + 3)
+    } else if (opponent == "C" && you == "X") {
+      score += (0 + 2)
+    } else if (opponent == "C" && you == "Y") {
+      score += (3 + 3)
+    } else if (opponent == "C" && you == "Z") {
+      score += (6 + 1)
+    }
+  }
 
-  private fun resolveRound(round: Combination) {
+  private fun resolveRoundForFirstPart(round: Combination) {
     val (opponent, you) = round
     if (opponent == "A" && you == "X") {
       score += (1 + 3)
