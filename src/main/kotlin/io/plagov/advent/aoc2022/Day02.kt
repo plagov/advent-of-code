@@ -2,65 +2,47 @@ package io.plagov.advent.aoc2022
 
 class Day02 {
 
-  private var score = 0
-
   fun partOne(input: List<String>): Int {
-    input
+    return input
       .map { parseInputToCombination(it) }
-      .forEach { resolveRoundForFirstPart(it) }
-    return score
+      .fold(0) { score, round -> score + resolveRoundForFirstPart(round) }
   }
 
   fun partTwo(input: List<String>): Int {
-    input
+    return input
       .map { parseInputToCombination(it) }
-      .forEach { resolveRoundForSecondPart(it) }
-    return score
+      .fold(0) { score, round -> score + resolveRoundForSecondPart(round)}
   }
 
-  private fun resolveRoundForSecondPart(round: Combination) {
+  private fun resolveRoundForSecondPart(round: Combination): Int {
     val (opponent, you) = round
-    if (opponent == "A" && you == "X") {
-      score += (0 + 3)
-    } else if (opponent == "A" && you == "Y") {
-      score += (3 + 1)
-    } else if (opponent == "A" && you == "Z") {
-      score += (6 + 2)
-    } else if (opponent == "B" && you == "X") {
-      score += (0 + 1)
-    } else if (opponent == "B" && you == "Y") {
-      score += (3 + 2)
-    } else if (opponent == "B" && you == "Z") {
-      score += (6 + 3)
-    } else if (opponent == "C" && you == "X") {
-      score += (0 + 2)
-    } else if (opponent == "C" && you == "Y") {
-      score += (3 + 3)
-    } else if (opponent == "C" && you == "Z") {
-      score += (6 + 1)
+    return when {
+        opponent == "A" && you == "X" -> 0 + 3
+        opponent == "A" && you == "Y" -> 3 + 1
+        opponent == "A" && you == "Z" -> 6 + 2
+        opponent == "B" && you == "X" -> 0 + 1
+        opponent == "B" && you == "Y" -> 3 + 2
+        opponent == "B" && you == "Z" -> 6 + 3
+        opponent == "C" && you == "X" -> 0 + 2
+        opponent == "C" && you == "Y" -> 3 + 3
+        opponent == "C" && you == "Z" -> 6 + 1
+      else -> error("Something went wrong")
     }
   }
 
-  private fun resolveRoundForFirstPart(round: Combination) {
+  private fun resolveRoundForFirstPart(round: Combination): Int {
     val (opponent, you) = round
-    if (opponent == "A" && you == "X") {
-      score += (1 + 3)
-    } else if (opponent == "A" && you == "Y") {
-      score += (2 + 6)
-    } else if (opponent == "A" && you == "Z") {
-      score += (3 + 0)
-    } else if (opponent == "B" && you == "X") {
-      score += (1 + 0)
-    } else if (opponent == "B" && you == "Y") {
-      score += (2 + 3)
-    } else if (opponent == "B" && you == "Z") {
-      score += (3 + 6)
-    } else if (opponent == "C" && you == "X") {
-      score += (1 + 6)
-    } else if (opponent == "C" && you == "Y") {
-      score += (2 + 0)
-    } else if (opponent == "C" && you == "Z") {
-      score += (3 + 3)
+    return when {
+        opponent == "A" && you == "X" -> 1 + 3
+        opponent == "A" && you == "Y" -> 2 + 6
+        opponent == "A" && you == "Z" -> 3 + 0
+        opponent == "B" && you == "X" -> 1 + 0
+        opponent == "B" && you == "Y" -> 2 + 3
+        opponent == "B" && you == "Z" -> 3 + 6
+        opponent == "C" && you == "X" -> 1 + 6
+        opponent == "C" && you == "Y" -> 2 + 0
+        opponent == "C" && you == "Z" -> 3 + 3
+      else -> error("Something went wrong")
     }
   }
 
