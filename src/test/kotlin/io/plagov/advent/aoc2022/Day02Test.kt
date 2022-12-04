@@ -31,5 +31,4 @@ class Day02Test {
   fun solveSecondForTaskInput() {
     assertEquals(11258, day2.partTwo(taskInput))
   }
-
 }
