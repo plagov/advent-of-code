@@ -10,7 +10,7 @@ repositories {
   mavenCentral()
 }
 
-val junitVersion = "5.9.1"
+val junitVersion = "5.9.2"
 
 dependencies {
   implementation("org.junit.jupiter:junit-jupiter:$junitVersion")
