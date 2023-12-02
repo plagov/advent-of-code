@@ -1,6 +1,5 @@
 plugins {
-  kotlin("jvm") version "1.8.10"
-  id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
+  kotlin("jvm") version "1.9.21"
 }
 
 group = "io.plagov"
@@ -10,7 +9,7 @@ repositories {
   mavenCentral()
 }
 
-val junitVersion = "5.9.2"
+val junitVersion = "5.10.1"
 
 dependencies {
   implementation("org.junit.jupiter:junit-jupiter:$junitVersion")
@@ -19,15 +18,4 @@ dependencies {
 
 tasks.test {
   useJUnitPlatform()
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-  kotlinOptions {
-    freeCompilerArgs = listOf(
-      "-Xuse-k2",
-      "-Xbackend-threads=4"
-    )
-    jvmTarget = "11"
-    languageVersion = "1.7"
-  }
 }
