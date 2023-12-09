@@ -3,18 +3,30 @@ package io.plagov.advent.aoc2023
 class Day02 {
 
   fun partOne(input: List<String>): Int {
-    val records = input.map { line ->
-      val result = """(Game \d+): (.*)""".toRegex().find(line)!!
-      val (game, sets) = result.destructured
-      val id = game.substringAfter("Game ").toInt()
-      val cubesSets = sets.split("; ").map { set ->
-        parseSet(set)
-      }
-      Record(id, cubesSets)
-    }
+    val records = parseRecords(input)
     return records.filter { record ->
       record.sets.none { it.red > 12 || it.green > 13 || it.blue > 14 }
     }.sumOf { it.id }
+  }
+
+  fun partTwo(input: List<String>): Int {
+    val records = parseRecords(input)
+    return records.sumOf { record ->
+      val maxRed = record.sets.maxOf { it.red }
+      val maxGreen = record.sets.maxOf { it.green }
+      val maxBlue = record.sets.maxOf { it.blue }
+      maxRed * maxGreen * maxBlue
+    }
+  }
+
+  private fun parseRecords(input: List<String>) = input.map { line ->
+    val result = """(Game \d+): (.*)""".toRegex().find(line)!!
+    val (game, sets) = result.destructured
+    val id = game.substringAfter("Game ").toInt()
+    val cubesSets = sets.split("; ").map { set ->
+      parseSet(set)
+    }
+    Record(id, cubesSets)
   }
 
   private fun parseSet(set: String): CubesSet {
