@@ -19,6 +19,6 @@ class Day04Test {
 
   @Test
   fun solveFirstForTaskInput() {
-    assertEquals(123, day04.partOne(taskInput))
+    assertEquals(25010, day04.partOne(taskInput))
   }
 }
