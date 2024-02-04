@@ -17,6 +17,6 @@ class Day09Test {
 
   @Test
   fun solveSecond() {
-    assertEquals(2046, day9.partTwo(taskInput))
+    assertEquals(736, day9.partTwo(taskInput))
   }
 }
