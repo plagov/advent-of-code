@@ -1,5 +1,5 @@
 plugins {
-  kotlin("jvm") version "1.9.21"
+  kotlin("jvm") version "2.0.10"
 }
 
 group = "io.plagov"
@@ -9,7 +9,7 @@ repositories {
   mavenCentral()
 }
 
-val junitVersion = "5.10.1"
+val junitVersion = "5.11.0"
 
 dependencies {
   implementation("org.junit.jupiter:junit-jupiter:$junitVersion")
