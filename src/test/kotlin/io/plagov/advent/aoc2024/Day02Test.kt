@@ -7,12 +7,16 @@ import util.readInputFile
 class Day02Test {
 
   private val input = readInputFile("2024/day02.txt")
-  private val sampleInput = readInputFile("2024/day02-sample.txt")
 
   private val day2 = Day02()
 
   @Test
   fun solveFirst() {
     Assertions.assertEquals(341, day2.partOne(input))
+  }
+
+  @Test
+  fun solveSecond() {
+    Assertions.assertEquals(404, day2.partTwo(input))
   }
 }
