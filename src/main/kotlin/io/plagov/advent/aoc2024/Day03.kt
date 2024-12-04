@@ -12,4 +12,12 @@ class Day03 {
         a.toInt() * b.toInt()
       }
   }
+
+  fun partTwo(input: String): Int {
+    val sanitizeRegex = """don't\(\).*?do\(\)""".toRegex()
+    val sanitizedInput = input
+      .replace("\n", "")
+      .replace(sanitizeRegex, "-")
+    return partOne(sanitizedInput)
+  }
 }
