@@ -14,21 +14,15 @@ class Day02 {
   }
 
   fun partTwo(input: List<String>): Int {
-    val lists = input.map { line -> line.split(" ").map { it.toInt() } }
-
-    var count = 0
-
-    lists.forEach { line ->
-      for (i in line.indices) {
-        val result = isLineSafe(line.toMutableList().apply { removeAt(i) })
-        if (result) {
-          count++
-          break
-        }
-      }
+    val lists = input.map { line ->
+      line.split(" ").map { it.toInt() }
     }
 
-    return count
+    return lists.count { line ->
+      line.indices.any { index ->
+        isLineSafe(line.toMutableList().apply { removeAt(index) })
+      }
+    }
   }
 
   private fun isLineSafe(line: List<Int>): Boolean {
@@ -37,5 +31,4 @@ class Day02 {
     val isDecreasing = line.windowed(2).all { (a, b) -> a > b }
     return isValid && (isIncreasing || isDecreasing)
   }
-
 }
