@@ -7,30 +7,17 @@ class Day02 {
   fun partOne(input: List<String>): Int {
 
     val lists = input.map { line ->
-      line.split(" ")
+      line.split(" ").map { it.toInt() }
     }
 
-    val count = lists.count { line ->
-      val result = line.windowed(2).map { pair ->
-        pair.first().toInt() - pair.last().toInt()
-      }.filter { diff ->
-        isValidDiff(diff)
-      }.fold(0) { result, diff ->
-        if (isIncrease(diff)) {
-          result + 1
-        } else {
-          result - 1
-        }
-      }
-
-
-      line.count() - 1 == abs(result)
-    }
-
-    return count
+    return lists.count { line -> isLineSafe(line) }
   }
 
-  private fun isValidDiff(diff: Int) = abs(diff) in 1..3
+  private fun isLineSafe(line: List<Int>): Boolean {
+    val isValid = line.windowed(2).all { (a, b) -> abs(a - b) in 1..3 }
+    val isIncreasing = line.windowed(2).all { (a, b) -> a < b }
+    val isDecreasing = line.windowed(2).all { (a, b) -> a > b }
+    return isValid && (isIncreasing || isDecreasing)
+  }
 
-  private fun isIncrease(diff: Int) = diff < 0
 }
