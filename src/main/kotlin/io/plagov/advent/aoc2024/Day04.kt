@@ -3,11 +3,10 @@ package io.plagov.advent.aoc2024
 class Day04 {
 
   private lateinit var grid: Array<CharArray>
-  private var count = 0
+  private var countPartOne = 0
 
   fun partOne(input: String): Int {
     grid = input.lines().map { it.toCharArray() }.toTypedArray()
-
 
     for (row in grid.indices) {
       for (col in grid[row].indices) {
@@ -25,7 +24,34 @@ class Day04 {
       }
     }
 
-    return count
+    return countPartOne
+  }
+
+  fun partTwo(input: String): Int {
+    grid = input.lines().map { it.toCharArray() }.toTypedArray()
+    var countPartTwo = 0
+
+    for (row in grid.indices) {
+      for (col in grid[row].indices) {
+        val center = grid.getElement(row, col)
+        val downRight = grid.getElement(row + 1, col + 1)
+        val downLeft = grid.getElement(row + 1, col - 1)
+        val upLeft = grid.getElement(row - 1, col - 1)
+        val upRight = grid.getElement(row - 1, col + 1)
+        if (listOf(downRight, downLeft, upLeft, upRight).any { it == null }) {
+          continue
+        }
+        if ((center == 'A' && downRight == 'S' && downLeft == 'M' && upLeft == 'M' && upRight == 'S') ||
+            (center == 'A' && downRight == 'S' && downLeft == 'S' && upLeft == 'M' && upRight == 'M') ||
+            (center == 'A' && downRight == 'M' && downLeft == 'M' && upLeft == 'S' && upRight == 'S') ||
+            (center == 'A' && downRight == 'M' && downLeft == 'M' && upLeft == 'S' && upRight == 'S') ||
+            (center == 'A' && downRight == 'M' && downLeft == 'S' && upLeft == 'S' && upRight == 'M')) {
+          countPartTwo++
+        }
+      }
+    }
+
+    return countPartTwo
   }
 
   private fun checkUpRight(row: Int, col: Int) {
@@ -36,7 +62,7 @@ class Day04 {
       return
     }
     if (second == 'M' && third == 'A' && forth == 'S') {
-      count++
+      countPartOne++
     }
   }
 
@@ -48,7 +74,7 @@ class Day04 {
       return
     }
     if (second == 'M' && third == 'A' && forth == 'S') {
-      count++
+      countPartOne++
     }
   }
 
@@ -60,7 +86,7 @@ class Day04 {
       return
     }
     if (second == 'M' && third == 'A' && forth == 'S') {
-      count++
+      countPartOne++
     }
   }
 
@@ -72,7 +98,7 @@ class Day04 {
       return
     }
     if (second == 'M' && third == 'A' && forth == 'S') {
-      count++
+      countPartOne++
     }
   }
 
@@ -84,7 +110,7 @@ class Day04 {
       return
     }
     if (second == 'M' && third == 'A' && forth == 'S') {
-      count++
+      countPartOne++
     }
   }
 
@@ -96,7 +122,7 @@ class Day04 {
       return
     }
     if (second == 'M' && third == 'A' && forth == 'S') {
-      count++
+      countPartOne++
     }
   }
 
@@ -108,7 +134,7 @@ class Day04 {
       return
     }
     if (second == 'M' && third == 'A' && forth == 'S') {
-      count++
+      countPartOne++
     }
   }
 
@@ -120,7 +146,7 @@ class Day04 {
       return
     }
     if (second == 'M' && third == 'A' && forth == 'S') {
-      count++
+      countPartOne++
     }
   }
 

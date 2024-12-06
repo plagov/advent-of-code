@@ -11,21 +11,13 @@ class Day04Test {
 
   private val day4 = Day04()
 
-  private val sampleInput = """
-    MMMSXXMASM
-    MSAMXMSMSA
-    AMXSXMAAMM
-    MSAMASMSMX
-    XMASAMXAMM
-    XXAMMXXAMA
-    SMSMSASXSS
-    SAXAMASAAA
-    MAMMMXMMMM
-    MXMXAXMASX
-  """.trimIndent()
-
   @Test
   fun partOne() { 
     Assertions.assertEquals(2557, day4.partOne(input))
+  }
+
+  @Test
+  fun partTwo() {
+    Assertions.assertEquals(1854, day4.partTwo(input))
   }
 }
