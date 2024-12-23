@@ -14,4 +14,9 @@ class Day14Test {
   fun partOne() {
     Assertions.assertEquals(216027840, day14.partOne(input))
   }
+
+  @Test
+  fun partTwo() {
+    Assertions.assertEquals(6876, day14.partTwo(input))
+  }
 }
