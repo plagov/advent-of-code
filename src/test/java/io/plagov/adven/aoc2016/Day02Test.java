@@ -16,4 +16,10 @@ class Day02Test {
         var day2 = new Day02();
         Assertions.assertEquals("14894", day2.partOne(input));
     }
+
+    @Test
+    void solveSecond() {
+        var day2 = new Day02();
+        Assertions.assertEquals("26B96", day2.partTwo(input));
+    }
 }
