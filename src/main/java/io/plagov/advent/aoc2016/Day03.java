@@ -1,8 +1,8 @@
 package io.plagov.advent.aoc2016;
 
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public class Day03 {
 
@@ -15,6 +15,27 @@ public class Day03 {
                 .count();
     }
 
+    public long partTwo(List<String> input) {
+        long count = 0;
+
+        for (var i = 0; i < input.size() - 2; i+=3) {
+            var line1 = parseTriangle(input.get(i));
+            var line2 = parseTriangle(input.get(i + 1));
+            var line3 = parseTriangle(input.get(i + 2));
+
+            var triangle1 = new Triangle(line1.first(), line2.first(), line3.first());
+            var triangle2 = new Triangle(line1.second(), line2.second(), line3.second());
+            var triangle3 = new Triangle(line1.third(), line2.third(), line3.third());
+
+            var validCount = Stream.of(triangle1, triangle2, triangle3)
+                    .filter(Day03::isValidTriangle)
+                    .count();
+            count += validCount;
+        }
+
+        return count;
+    }
+
     private static boolean isValidTriangle(Triangle triangle) {
         var a = triangle.first() + triangle.second() > triangle.third();
         var b = triangle.first() + triangle.third() > triangle.second();
@@ -25,7 +46,7 @@ public class Day03 {
 
     private static Triangle parseTriangle(String triangle) {
         var compiledPattern = Pattern.compile(pattern);
-        Matcher matcher = compiledPattern.matcher(triangle);
+        var matcher = compiledPattern.matcher(triangle);
 
         if (matcher.matches()) {
             var first = Integer.parseInt(matcher.group(1));
