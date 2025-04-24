@@ -28,6 +28,35 @@ public class Day04 {
                 .sum();
     }
 
+    public int partTwo(List<String> input) {
+        var rooms = input.stream()
+                .map(this::parseRoom)
+                .toList();
+
+        return rooms.stream()
+                .filter(room -> {
+                    var map = getCharsWithFrequencies(room);
+                    var calculatedChecksum = calculateChecksum(map);
+                    return room.checksum.equals(calculatedChecksum) &&
+                            decodeRoom(room).name().startsWith("north");
+                })
+                .findFirst().orElseThrow(() -> new IllegalArgumentException("Couldn't find a room"))
+                .sectorId();
+    }
+
+    private static Room decodeRoom(Room room) {
+        var chars = room.name().replace("-", "").toCharArray();
+        var stringBuilder = new StringBuilder();
+        for (Character ch : chars) {
+            var alphabetPosition = ch - 'a';
+            var newPosition = (alphabetPosition + room.sectorId()) % 26;
+            var newChar = (char) ('a' + newPosition);
+            stringBuilder.append(newChar);
+        }
+
+        return new Room(stringBuilder.toString(), room.sectorId(), room.checksum());
+    }
+
     @NotNull
     private static String calculateChecksum(HashMap<Character, Integer> map) {
         return map.entrySet()
