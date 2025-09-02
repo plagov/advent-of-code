@@ -1,6 +1,5 @@
-package io.plagov.adven.aoc2016;
+package io.plagov.advent.aoc2016;
 
-import io.plagov.advent.aoc2016.Day03;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import util.FileUtil;
