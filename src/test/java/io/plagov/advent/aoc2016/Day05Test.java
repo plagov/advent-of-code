@@ -12,4 +12,12 @@ class Day05Test {
 
         Assertions.assertEquals("f97c354d", password);
     }
+
+    @Test
+    void solveSecond() {
+        var day5 = new Day05();
+        var password = day5.partTwo("reyedfim");
+
+        Assertions.assertEquals("863dde27", password);
+    }
 }

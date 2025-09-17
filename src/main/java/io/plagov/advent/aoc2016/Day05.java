@@ -24,6 +24,39 @@ public class Day05 {
         return passwordBuilder.toString();
     }
 
+    public String partTwo(String input) {
+        long index = 0;
+
+        var passwordArray = new char[PASSWORD_LENGTH];
+        var numberOfPostionsFilled = 0;
+
+        while (numberOfPostionsFilled != PASSWORD_LENGTH) {
+            var md5 = calculateRawMD5(input + index);
+            if (isMatch(md5)) {
+                var md5String = convertMD5bytesToString(md5);
+                var positionChar = md5String.charAt(5);
+                if (isValidPosition(positionChar)) {
+                    var passwordChar = md5String.charAt(6);
+                    var position = Character.getNumericValue(positionChar);
+                    if (passwordArray[position] == '\0') {
+                        passwordArray[position] = passwordChar;
+                        numberOfPostionsFilled++;
+                    }
+                }
+
+            }
+            index++;
+        }
+
+        return new String(passwordArray);
+    }
+
+    private static boolean isValidPosition(Character position) {
+        return Character.isDigit(position)
+                && 0 <= Character.getNumericValue(position)
+                && Character.getNumericValue(position) < 8;
+    }
+
     /**
      * Returns {@code true} if the first five hexadecimal characters of the provided raw MD5 digest are zero.
      * <p>
