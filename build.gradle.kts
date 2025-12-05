@@ -9,6 +9,16 @@ repositories {
   mavenCentral()
 }
 
+java {
+  toolchain {
+    languageVersion.set(JavaLanguageVersion.of(21))
+  }
+}
+
+kotlin {
+  jvmToolchain(21)
+}
+
 val junitVersion = "5.13.4"
 
 dependencies {
