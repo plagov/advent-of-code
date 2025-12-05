@@ -26,7 +26,7 @@ public class Day01 {
     }
 
     private void moveLeft(int steps) {
-        position = ((position + (-steps)) % 100 + 100) % 100;
+        position = ((position - steps) % 100 + 100) % 100;
 
         if (position == 0) {
             count++;
